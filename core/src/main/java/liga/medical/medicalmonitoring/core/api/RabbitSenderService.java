@@ -5,5 +5,5 @@ import liga.medical.dto.RabbitMessageDto;
 
 public interface RabbitSenderService {
     void sendMessage(RabbitMessageDto rabbitMessageDto, String queue) throws JsonProcessingException;
-    void sendError(String error);
+    //void sendError(String error);
 }

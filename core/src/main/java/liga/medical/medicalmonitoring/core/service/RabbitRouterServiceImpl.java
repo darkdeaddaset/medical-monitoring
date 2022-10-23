@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import liga.medical.dto.RabbitMessageDto;
 import liga.medical.dto.enums.MessageType;
 import liga.medical.medicalmonitoring.core.api.RabbitRouterService;
-import liga.medical.medicalmonitoring.core.api.RabbitSenderService;
+import liga.medical.medicalmonitoring.core.api.RabbitSenderError;
 import liga.medical.medicalmonitoring.core.model.NameQueue;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class RabbitRouterServiceImpl implements RabbitRouterService {
     private final ObjectMapper objectMapper;
-    private final RabbitSenderService rabbitSenderService;
+    private final RabbitSenderError rabbitSenderError;
 
     @Override
     public void routeMessage(String message) {
@@ -24,16 +24,16 @@ public class RabbitRouterServiceImpl implements RabbitRouterService {
 
             switch (messageType) {
                 case DAILY:
-                    rabbitSenderService.sendMessage(rabbitMessageDto, NameQueue.DAILY.getStr());
+                    rabbitSenderError.sendMessage(rabbitMessageDto, NameQueue.DAILY.getStr());
                     break;
                 case ALERT:
-                    rabbitSenderService.sendMessage(rabbitMessageDto, NameQueue.ALERT.getStr());
+                    rabbitSenderError.sendMessage(rabbitMessageDto, NameQueue.ALERT.getStr());
                     break;
                 case ERROR:
-                    rabbitSenderService.sendMessage(rabbitMessageDto, NameQueue.ERROR.getStr());
+                    rabbitSenderError.sendMessage(rabbitMessageDto, NameQueue.ERROR.getStr());
                     break;
                 default:
-                    rabbitSenderService.sendError("ERROR");
+                    rabbitSenderError.sendError("ERROR");
                     break;
             }
         } catch (JsonProcessingException e) {

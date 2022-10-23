@@ -3,7 +3,7 @@ package liga.medical.medicalmonitoring.core.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import liga.medical.dto.RabbitMessageDto;
-import liga.medical.medicalmonitoring.core.api.RabbitSenderService;
+import liga.medical.medicalmonitoring.core.api.RabbitSenderError;
 import liga.medical.medicalmonitoring.core.model.NameQueue;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor(access = AccessLevel.PUBLIC)
-public class RabbitSenderServiceImpl implements RabbitSenderService {
+public class RabbitSenderServiceImpl implements RabbitSenderError {
     private final AmqpTemplate amqpTemplate;
     private final ObjectMapper objectMapper;
 
