@@ -22,7 +22,7 @@ public class RabbitRouterServiceImpl implements RabbitRouterService {
             RabbitMessageDto rabbitMessageDto = objectMapper.readValue(message, RabbitMessageDto.class);
             MessageType messageType = rabbitMessageDto.getMessageType();
 
-            switch (messageType){
+            switch (messageType) {
                 case DAILY:
                     rabbitSenderService.sendMessage(rabbitMessageDto, NameQueue.DAILY.getStr());
                     break;
@@ -31,6 +31,9 @@ public class RabbitRouterServiceImpl implements RabbitRouterService {
                     break;
                 case ERROR:
                     rabbitSenderService.sendMessage(rabbitMessageDto, NameQueue.ERROR.getStr());
+                    break;
+                default:
+                    rabbitSenderService.sendError("ERROR");
                     break;
             }
         } catch (JsonProcessingException e) {

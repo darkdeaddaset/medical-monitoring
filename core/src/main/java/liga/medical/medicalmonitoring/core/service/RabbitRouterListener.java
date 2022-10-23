@@ -2,7 +2,6 @@ package liga.medical.medicalmonitoring.core.service;
 
 import liga.medical.medicalmonitoring.core.api.RabbitRouterService;
 import liga.medical.medicalmonitoring.core.config.RabbitConfig;
-import liga.medical.medicalmonitoring.core.model.NameQueue;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
