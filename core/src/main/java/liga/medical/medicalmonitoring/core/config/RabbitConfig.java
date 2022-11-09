@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitConfig {
     public static final String ROUTER = "common-monitoring";
-    public static final String HOST = "rabbit";
+    public static final String HOST = "localhost";
 
     public ConnectionFactory connectionFactory() {
         return new CachingConnectionFactory(HOST);
